@@ -53,6 +53,15 @@ public class GlobalExceptionHandler {
 		logger.error(errorDetails.getDetails());
 		return new ResponseEntity<>(errorDetails, HttpStatus.TOO_MANY_REQUESTS);
 	}
+	
+	// handle Duplicate Resource exception
+	@ExceptionHandler(MaximumResourceLimitReachedException.class)
+		public ResponseEntity<?> handleMaximumResourceLimitReachedException(MaximumResourceLimitReachedException exception,
+				WebRequest request) {
+			ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false));
+			logger.error(errorDetails.getDetails());
+			return new ResponseEntity<>(errorDetails, HttpStatus.NOT_ACCEPTABLE);
+		}
 
 	// handle Global Exceptions
 	@ExceptionHandler(Exception.class)

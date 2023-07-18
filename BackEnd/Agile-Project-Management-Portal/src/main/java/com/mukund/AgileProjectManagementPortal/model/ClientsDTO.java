@@ -1,5 +1,10 @@
 package com.mukund.AgileProjectManagementPortal.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 public class ClientsDTO {
 
 	/**
@@ -26,9 +31,17 @@ public class ClientsDTO {
 	}
 
 	private long id;
+	
+	@Size(min = 5, message = "Client Name must have more than 5 symbols")
 	private String name;
+	
+	@Size(min = 5, message = "POC_FullName must have more than 5 symbols")
 	private String pOC_FullName;
+	
+    @Range(min = 1000000000L, max = 9999999999L, message = "Poc Phone Number is invalid. It must be 10 Digits")
 	private long pOC_PhoneNumber;
+	
+	@Email
 	private String pOC_EmailAddress;
 
 	/**

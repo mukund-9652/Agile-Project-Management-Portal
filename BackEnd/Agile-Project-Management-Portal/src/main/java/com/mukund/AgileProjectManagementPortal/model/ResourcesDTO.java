@@ -1,6 +1,6 @@
 package com.mukund.AgileProjectManagementPortal.model;
 
-import com.mukund.AgileProjectManagementPortal.entity.Projects;
+import jakarta.validation.constraints.Pattern;
 
 public class ResourcesDTO {
 
@@ -18,7 +18,7 @@ public class ResourcesDTO {
 	}
 
 	public ResourcesDTO(String userId, String firstName, String lastName, String email, long phoneNumber, String role,
-			Projects projects) {
+			ProjectsDTO projects) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -32,10 +32,12 @@ public class ResourcesDTO {
 	private String userId;
 	private String firstName;
 	private String lastName;
+	
+    @Pattern(regexp = ".+@gmail\\.com", message = "Email address should end with gmail.com")
 	private String email;
 	private long phoneNumber;
 	private String role;
-	private Projects projects;
+	private ProjectsDTO projects;
 
 	/**
 	 * @return the userId
@@ -82,7 +84,7 @@ public class ResourcesDTO {
 	/**
 	 * @return the projects
 	 */
-	public Projects getProjects() {
+	public ProjectsDTO getProjects() {
 		return projects;
 	}
 
@@ -90,7 +92,7 @@ public class ResourcesDTO {
 	 * @param userId the userId to set
 	 */
 	public void setUserId(String userId) {
-		this.userId = userId;
+		this.userId = generateUserId(userId);
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class ResourcesDTO {
 	/**
 	 * @param projects the projects to set
 	 */
-	public void setProjects(Projects projects) {
+	public void setProjects(ProjectsDTO projects) {
 		this.projects = projects;
 	}
 
@@ -140,4 +142,15 @@ public class ResourcesDTO {
 		return "ResourcesDTO [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", phoneNumber=" + phoneNumber + ", role=" + role + ", projects=" + projects + "]";
 	}
+	
+	private String generateUserId(String lastName) {
+        // Extract the first two letters of the lastName
+        String initials = lastName.substring(0, 2).toUpperCase();
+        
+        // Generate a random 4-digit number
+        int randomNumber = (int) (Math.random() * 9000) + 1000;
+        
+        // Concatenate the initials and the random number to form the UserId
+        return initials + randomNumber;
+    }
 }

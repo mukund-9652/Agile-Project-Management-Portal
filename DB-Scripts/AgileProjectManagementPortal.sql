@@ -98,3 +98,7 @@ INSERT INTO PROJECTS VALUES
 (10002,'Recruitment Portal Management',25000,'2023-01-01','2023-10-10','2023-01-01','New',Null,2),
 (10003,'Resource Management Portal',25000,'2023-01-01','2023-10-10','2023-01-01','New',Null,3),
 (10004,'Competition Management Portal',25000,'2023-01-01','2023-10-10','2023-01-01','New',Null,4);
+
+
+INSERT INTO RESOURCES VALUES
+('MU1001','MUKUND','R S','mukund.rs.2001@gmail.com',7845159519,'Developer',10002);
