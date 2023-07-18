@@ -35,14 +35,14 @@ public class Projects {
 	 * @param status
 	 * @param clients
 	 */
-	public Projects(long projectCode, String title, long budget, LocalDate startDate, LocalDate expectedDate,
+	public Projects(long projectCode, String title, long budget, LocalDate startDate, LocalDate expectedEndDate,
 			LocalDate createdOn, String status, Clients clients) {
 		super();
 		this.projectCode = projectCode;
 		this.title = title;
 		this.budget = budget;
 		this.startDate = startDate;
-		this.expectedDate = expectedDate;
+		this.expectedEndDate = expectedEndDate;
 		this.createdOn = createdOn;
 		this.status = status;
 		this.clients = clients;
@@ -61,8 +61,8 @@ public class Projects {
 	@Column(name="StartDate")
 	private LocalDate startDate;
 	
-	@Column(name="ExpectedDate")
-	private LocalDate expectedDate;
+	@Column(name="ExpectedEndDate")
+	private LocalDate expectedEndDate;
 	
 	@Column(name="CreatedOn")
 	private LocalDate createdOn;
@@ -71,7 +71,7 @@ public class Projects {
 	private String status;
 	
 	@ManyToOne
-	@JoinColumn(name="CliendId")
+	@JoinColumn(name="ClientId")
 	private Clients clients;
 	
 	@OneToMany(mappedBy="projects")

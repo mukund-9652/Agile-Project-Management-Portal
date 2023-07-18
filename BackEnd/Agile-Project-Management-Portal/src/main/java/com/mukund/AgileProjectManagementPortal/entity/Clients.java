@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,18 +43,23 @@ public class Clients {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@NotNull
 	@Column(name="Name")
 	private String name;
 	
+	@NotNull
 	@Column(name="POC_FullName")
 	private String pOC_FullName;
 	
+	@NotNull
 	@Column(name="POC_PhoneNumber")
 	private long pOC_PhoneNumber;
 	
+	@NotNull
 	@Column(name="POC_EmailAddress")
 	private String pOC_EmailAddress;
 	
+	@NotNull
 	@OneToMany(mappedBy="clients")
 	private List<Projects> projects;
 	
